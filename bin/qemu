@@ -1,10 +1,9 @@
 #!/bin/bash
+BEFORE_DIR=$(pwd)
 if ! which qemu-system-x86_64 > /dev/null; then
   install-pkg qemu
 fi
-if ! [ -d /tmp/qemu-libs ]; then
-  mkdir /tmp/qemu-libs
-  cd /tmp/qemu-libs
+if ! [ -f ./vgabios-stdvga.bin ]; then
   mkdir libtmp
   cd libtmp
   wget https://repl.it/@CSharpIsGud/VolantOS.zip; unzip VolantOS
@@ -14,7 +13,6 @@ if ! [ -d /tmp/qemu-libs ]; then
   cd ..
   rm -rf libtmp
 fi
-cd /tmp/qemu-libs
 
 QEMU_PLATFORM=x86_64
 QEMU_ARGS=""
