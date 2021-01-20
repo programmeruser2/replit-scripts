@@ -2,7 +2,7 @@
 if ! which qemu-system-x86_64 > /dev/null; then
   install-pkg qemu
 fi
-if ! test -d /tmp/qemu-libs then
+if ! test -d /tmp/qemu-libs; then
   mkdir /tmp/qemu-libs
   cd /tmp/qemu-libs
   mkdir libtmp
