@@ -1,8 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 if ! which qemu-system-x86_64 > /dev/null; then
   install-pkg qemu
 fi
-if ! test -d /tmp/qemu-libs; then
+if ! [ -d /tmp/qemu-libs ]; then
   mkdir /tmp/qemu-libs
   cd /tmp/qemu-libs
   mkdir libtmp
@@ -22,10 +22,10 @@ GET_PLATFORM=false
 
 for arg in $@ 
 do
-  if test $GET_PLAFORM == true; then
+  if [ $GET_PLAFORM == true ]; then
     QEMU_PLATFORM=$arg
     GET_PLATFORM=false
-  elif test $arg == "-platform"; then
+  elif [ $arg == "-platform" ]; then
     GET_PLATFORM=true
   else
     QEMU_ARGS="$QEMU_ARGS $arg"
