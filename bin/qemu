@@ -22,10 +22,10 @@ GET_PLATFORM=false
 
 for arg in $@ 
 do
-  if [ $GET_PLAFORM == true ]; then
+  if [ "$GET_PLATFORM" == true ]; then
     QEMU_PLATFORM=$arg
     GET_PLATFORM=false
-  elif [ $arg == "-platform" ]; then
+  elif [ "$arg" == "-platform" ]; then
     GET_PLATFORM=true
   else
     QEMU_ARGS="$QEMU_ARGS $arg"
