@@ -1,5 +1,4 @@
 #!/bin/bash
-BEFORE_DIR=$(pwd)
 if ! which qemu-system-x86_64 > /dev/null; then
   install-pkg qemu
 fi
