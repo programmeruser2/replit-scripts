@@ -1,0 +1,34 @@
+#!/bin/sh
+if ! which qemu-system-x86_64 > /dev/null; then
+  install-pkg qemu
+fi
+if [ -d /tmp/qemu-libs ]; then
+  mkdir /tmp/qemu-libs
+  cd /tmp/qemu-libs
+  mkdir libtmp
+  cd libtmp
+  wget https://repl.it/@CSharpIsGud/VolantOS.zip; unzip VolantOS
+  mv qemu/lib* ../
+  mv qemu/*.bin ../
+  mv qemu/*.rom ../
+  cd ..
+  rm -rf libtmp
+fi
+cd /tmp/qemu-libs
+
+QEMU_PLATFORM=x86_64
+QEMU_ARGS=""
+GET_PLATFORM=false
+
+for arg in $@ 
+do
+  if [ $GET_PLAFORM = true ]; then
+    QEMU_PLATFORM=$arg
+    GET_PLATFORM=false
+  elif [ $arg == "-platform" ]; then
+    GET_PLATFORM=true
+  else
+    QEMU_ARGS="$QEMU_ARGS $arg"
+  fi
+done
+qemu-system-${QEMU_PLATFORM} $QEMU_ARGS
